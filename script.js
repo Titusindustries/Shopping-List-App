@@ -42,10 +42,10 @@ function clearOut() {
     inputEl.value = ""
 }
 
-function listEverything(item) {
+function listEverything(items) {
 
-    let itemID = item[0]
-    let itemValue = item[1]
+    let itemID = items[0]
+    let itemValue = items[1]
 
     let newEl = document.createElement("li")
 
