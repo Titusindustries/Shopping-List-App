@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSetting = {
     databaseURL: "https://playground-803a6-default-rtdb.asia-southeast1.firebasedatabase.app/"
@@ -21,11 +21,16 @@ addBtn.addEventListener("click", function(){
 })
 
 onValue(shoppingInDB, function(snapshot){
-    let shoppingArray = Object.values(snapshot.val())
+    let shoppingArray = Object.entries(snapshot.val())
     shoppingListClear()
 
     for(let i=0 ; i<shoppingArray.length ; i++) {
-        listEverything(shoppingArray[i])
+
+        let currentItem = shoppingArray[i]
+        let currentItemID = shoppingArray[0]
+        let currentItemValue = shoppingArray[1]
+
+        listEverything(currentItem)
     }
 })
 
@@ -38,5 +43,20 @@ function clearOut() {
 }
 
 function listEverything(item) {
-    ulEl.innerHTML += `<li>${item}</li>` 
+
+    let itemID = item[0]
+    let itemValue = item[1]
+
+    let newEl = document.createElement("li")
+
+    newEl.textContent = itemValue
+
+    newEl.addEventListener("click", function(){
+
+        let exactLocationInDB = ref(database, `shoppingList/${itemID}`)
+
+        remove(exactLocationInDB)
+    })
+
+    ulEl.append(newEl)
 }
