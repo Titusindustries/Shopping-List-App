@@ -3,6 +3,7 @@ html,body{
     padding: 0;
     font-family: 'Rubik', sans-serif;
     background-color: #d8e5ff;
+    user-select: none;
 }
 
 #container{
@@ -14,7 +15,7 @@ html,body{
 
 input{
     color: #daf1f9;
-    background-color: rgb(66, 66, 67);
+    background-color: rgb(74, 74, 86);
     border: 0;
     padding: 15px;
     border-radius: 8px;
@@ -53,6 +54,7 @@ ul{
 
 ul li{
     font-size: 20px;
+    cursor: pointer;
     padding: 15px;
     border-radius: 8px;
     flex-grow: 1;
@@ -62,5 +64,10 @@ ul li{
 }
 
 button:hover{
+    background-color: #1f3d7a;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
+}
+
+li:hover{
+    background-color: #91b3f8;
 }
